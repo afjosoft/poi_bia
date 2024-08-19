@@ -68,18 +68,10 @@ shops_gdf = gpd.sjoin(shops_gdf, zipcodes_gdf[['geometry', 'ZIP_CODE', 'STATE', 
 # Convertir los polígonos states_gdf en centroides
 states_gdf['geometry'] = states_gdf['geometry'].apply(lambda geom: geom.centroid if geom.type == 'Polygon' else geom)
 #%%
+#-- GUARDAR LOS DATAFRAMES PROCESADOS
+zipcodes_gdf.to_file('./../data/internal/zipcodes.geojson', driver='GeoJSON')
+states_gdf.to_file('./../data/internal/points_of_interes.geojson', driver='GeoJSON')
+shops_gdf.to_file('./../data/internal/iberia_shops.geojson', driver='GeoJSON')
 
-#%%
-poi_zipcode_gdf = states_gdf[states_gdf['ZIP_CODE'] == '60515'] 
-poi_zipcode_gdf.plot()
-#%%
-
-#%%
-
-#%%
-print(states_gdf['geometry'].geom_type)
-#%%
-
-# %%
 
 # %%
